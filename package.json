@@ -1,0 +1,27 @@
+{
+  "name": "geo-notes",
+  "version": "1.0.0",
+  "description": "Geo-Notes - Ghi chú theo vị trí GPS với bản đồ",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -p 8080",
+    "dev": "http-server -p 8080 -c-1",
+    "https": "node https-server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "geolocation",
+    "notes",
+    "maps",
+    "gps"
+  ],
+  "author": "Loverboizz",
+  "license": "ISC",
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "selfsigned": "^3.0.1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

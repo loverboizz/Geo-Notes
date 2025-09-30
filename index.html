@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geo-Notes - Ghi chú theo vị trí</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>�</text></svg>">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="header">
+            <h1>📍 Geo-Notes</h1>
+            <p>Ghi chú theo vị trí - Chọn trực tiếp trên bản đồ</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Check-in Section -->
+            <section class="checkin-section">
+                <div class="checkin-form">
+                    <h2>Tạo ghi chú mới</h2>
+                    <div class="instruction">
+                        <p>📍 <strong>Hướng dẫn:</strong> Nhấn vào bản đồ để chọn vị trí, sau đó nhập ghi chú và
+                            Check-in</p>
+                    </div>
+                    <textarea id="noteText" placeholder="Nhập ghi chú của bạn..." rows="3"></textarea>
+                    <div class="form-actions">
+                        <button id="checkinBtn" class="btn-primary">
+                            <span class="icon">�</span>
+                            Check-in tại vị trí đã chọn
+                        </button>
+                    </div>
+                    <div id="locationStatus" class="location-status"></div>
+                </div>
+            </section>
+
+            <!-- Map Section -->
+            <section class="map-section">
+                <div class="map-controls">
+                    <h2>Bản đồ ghi chú</h2>
+                    <div class="search-location">
+                        <input type="text" id="locationSearch"
+                            placeholder="Tìm kiếm địa điểm (VD: Hồ Gươm, Hà Nội)..." />
+                        <button id="searchBtn" class="btn-primary">🔍 Tìm kiếm</button>
+                    </div>
+                    <div class="quick-locations">
+                        <span class="quick-label">Nhanh:</span>
+                        <button onclick="app.quickSearch('Hồ Gươm Hà Nội')" class="quick-btn">Hồ Gươm</button>
+                        <button onclick="app.quickSearch('Bến Thành TP.HCM')" class="quick-btn">Bến Thành</button>
+                        <button onclick="app.quickSearch('Cầu Rồng Đà Nẵng')" class="quick-btn">Cầu Rồng</button>
+                        <button onclick="app.quickSearch('Chợ Đồng Xuân Hà Nội')" class="quick-btn">Chợ Đồng
+                            Xuân</button>
+                    </div>
+                    <div class="filter-controls">
+                        <label for="radiusFilter">Lọc theo bán kính:</label>
+                        <select id="radiusFilter">
+                            <option value="all">Tất cả</option>
+                            <option value="1000">1km</option>
+                            <option value="5000">5km</option>
+                            <option value="10000">10km</option>
+                        </select>
+                        <button id="centerMapBtn" class="btn-secondary">Về Hà Nội</button>
+                    </div>
+                </div>
+                <div id="map" class="map-container"></div>
+            </section>
+
+            <!-- Notes List Section -->
+            <section class="notes-section">
+                <div class="notes-header">
+                    <h2>Danh sách ghi chú</h2>
+                    <div class="notes-stats">
+                        <span id="notesCount">0 ghi chú</span>
+                    </div>
+                </div>
+                <div id="notesList" class="notes-list"></div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Note Detail Modal -->
+    <div id="noteModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Chi tiết ghi chú</h3>
+                <span class="close" onclick="closeNoteModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="modalNoteContent"></div>
+                <div class="modal-actions">
+                    <button id="openInMapsBtn" class="btn-primary">
+                        <span class="icon">🗺️</span>
+                        Mở trong Google Maps
+                    </button>
+                    <button id="deleteNoteBtn" class="btn-danger">
+                        <span class="icon">🗑️</span>
+                        Xóa ghi chú
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
