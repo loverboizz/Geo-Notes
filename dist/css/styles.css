@@ -15,7 +15,8 @@ body {
 
 .app-container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin-left: 20px;
+    margin-right: 20px;
     padding: 20px;
     background: rgba(255, 255, 255, 0.95);
     border-radius: 15px;
